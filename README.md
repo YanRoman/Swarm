@@ -26,4 +26,6 @@ It is known that the global minimum of this function is zero, so the result of t
 ![image](https://user-images.githubusercontent.com/91944488/201535810-187e35ac-9a87-4cae-a31e-85375b8257ae.png)
 
 
+
+###  This code is applicable for finding the global minimum and other functions, it is also adapted for three-dimensional calculations
 P.S. This is my study project, will probably be updated
