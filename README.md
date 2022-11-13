@@ -27,5 +27,5 @@ It is known that the global minimum of this function is zero, so the result of t
 
 
 
-###  This code is applicable for finding the global minimum and other functions, it is also adapted for three-dimensional calculations
+###  This code is applicable for finding the global minimum and other functions
 P.S. This is my study project, will probably be updated
