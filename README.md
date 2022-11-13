@@ -3,8 +3,8 @@
 
 
 
+![ezgif com-gif-maker (1)](https://user-images.githubusercontent.com/91944488/201548079-9056d53e-6629-4bc5-bd1f-80ec1188db4a.gif)
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/91944488/201535383-cb935313-061e-43ec-9ef8-c2745f07dbb8.gif)
 
 
 
