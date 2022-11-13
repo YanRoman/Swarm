@@ -1,17 +1,17 @@
 import java.util.Vector;
 
 class Particle{
-    private int id;
+    private final int id;
     //Мерность графика
-    private int DIMENSION;
+    private final int DIMENSION;
     //Position
     private Vector<Double> position = new Vector<>();
     //Minimum Position
-    private Vector<Double> localMinPosition = new Vector<>();
+    private Vector<Double> localMaxPosition = new Vector<>();
     //Vector
     private Vector<Double> vector = new Vector<>();
     //local min func
-    private double localMinFunc;
+    private double localMaxFunc;
 
 
     //Constructor
@@ -20,81 +20,86 @@ class Particle{
         this.id = id;
         this.DIMENSION = numberOfCoordinates;
         for (int i = 0; i < numberOfCoordinates; i++){
-            // Random on interval [-100; 100]
-            this.position.add(Math.ceil((Math.random() * 200 - 100) * Math.pow(10,3)) / Math.pow(10,3));
+            // Random on interval [-5; 5]
+            this.position.add(Math.ceil((Math.random() * 10 - 5) * Math.pow(10,3)) / Math.pow(10,3));
             // Random on interval [0; 1]
             this.vector.add(Math.ceil((Math.random() * 1) * Math.pow(10,3)) / Math.pow(10,3));
 
             //localMinPosition = position
-            this.localMinPosition.add(this.position.get(i));
+            this.localMaxPosition.add(this.position.get(i));
         }
         //LocalMinFunc
-        this.localMinFunc = this.func(this.position);
+        this.localMaxFunc = this.func(this.position);
 
 
-        System.out.print("FIRST id: " + this.id);
+        System.out.print("-----INIT PARTICLE id: " + this.id);
         for (int i = 0; i < numberOfCoordinates; i++){
-            System.out.print(" x" + i + "= " + this.position.get(i));
+            System.out.print(" [x" + i + ": " + this.position.get(i) + "]");
         }
-        System.out.println(" localMin = " + this.localMinFunc);
-
+        System.out.print(" [Local Maximum: " + this.localMaxFunc + "]  Vector: ");
+        for (int i = 0; i < numberOfCoordinates; i++){
+            System.out.print(" [x" + i + ": " + this.vector.get(i) + "]");
+        }
+        System.out.println();
     }
 
     //change vector
-    public void changeVector(Vector<Double> globalMinPosition){
-        //Инерция
-        double w = 0.729;
+    public void changeVector(Vector<Double> globalMaxPosition){
+        double w = 0.2;
         //Весовой коэффицент
-        double c = 1.49;
+        double c = 1.1;
         //Случайные коэффиценты [0; 1]
         double r1 = Math.random() * 1;
         double r2 = Math.random() * 1;
+        System.out.println("R1: " + r1);
+        System.out.println("R2: " + r2);
 
         for(int i = 0; i < this.DIMENSION; i++){
             //change vector
-            this.vector.set(i, (w * this.vector.get(i)) + (c * r1 * this.localMinPosition.get(i)) -
-                    (c * r1 * this.position.get(i)) + (c * r2 * globalMinPosition.get(i)) -
+            this.vector.set(i,(this.vector.get(i) * w) + (c * r1 * this.localMaxPosition.get(i)) -
+                    (c * r1 * this.position.get(i)) + (c * r2 * globalMaxPosition.get(i)) -
                     (c * r2 * this.position.get(i)));
         }
+
+        for (int i = 0; i < this.DIMENSION; i++){
+            System.out.print("-----VECTOR: " + "[x" + i + ": " + this.vector.get(i) + "]");
+        }
+        System.out.println();
     }
 
     //move particle
     public void move(){
         for (int i = 0; i < this.DIMENSION; i++){
-            this.position.set(i, this.position.get(i) + this.vector.get(i));
+            if (this.position.get(i) + this.vector.get(i) <= 5 && this.position.get(i) + this.vector.get(i) >= -5){
+                this.position.set(i, this.position.get(i) + this.vector.get(i));
+            } else{
+                this.vector.set(i, 0.0);
+            }
 
-            if (this.func(this.position)  < this.localMinFunc){
-                this.localMinFunc = this.func(this.position);
-                this.localMinPosition = this.position;
+            if (this.func(this.position) > this.localMaxFunc){
+                this.localMaxFunc = this.func(this.position);
+                this.localMaxPosition = this.position;
             }
         }
     }
     //func
     public double func(Vector<Double> position){
-        double sum = 0;
+        double sum = 10 * DIMENSION;
         for (int i = 0; i < this.DIMENSION; i++){
-            sum += Math.pow(position.get(i), 2);
+            sum += Math.pow(position.get(i), 2) - (10 * Math.cos(2 * 3.14 * position.get(i)));
         }
         return sum;
-        //return (2 * Math.sin(x + y + 10)) / (Math.sqrt(2) * x + y + 0.5);
     }
-    public double getLocalMinFunc(){
-        return this.localMinFunc;
+    public double getLocalMaxFunc(){
+        return this.localMaxFunc;
     }
-    public Vector<Double> getLocalMinPosition(){
-        return this.localMinPosition;
+    public Vector<Double> getLocalMaxPosition(){
+        return this.localMaxPosition;
     }
     public Vector<Double> getPosition(){
         return this.position;
     }
-    public void out(){
-        System.out.print("ID: " + this.id);
-        for (int i = 0; i < this.DIMENSION; i++){
-            System.out.print("  x" + i + "= " + this.position.get(i));
-        }
-        for (int i = 0; i < this.DIMENSION; i++){
-            System.out.print("  v" + i + "= " + this.vector.get(i));
-        }
-        System.out.println(" Local Min: " + this.localMinFunc);
+    public Vector<Double> getVector(){
+        return this.vector;
     }
 }

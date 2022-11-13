@@ -7,9 +7,9 @@ class Swarm{
     //Мерность
     private final int DIMENSION;
     //global min position
-    private Vector<Double> globalMinPosition = new Vector<>();
+    private Vector<Double> globalMaxPosition = new Vector<>();
     //global min func
-    private double globalMinFunc;
+    private double globalMaxFunc;
     //swarm
     private ArrayList<Particle> swarmList = new ArrayList<>();
 
@@ -25,39 +25,45 @@ class Swarm{
             swarmList.add(new Particle(i, numberOfCoordinates));
         }
         //Инициализация позиции Глобального минимума
-        this.globalMinPosition=swarmList.get(0).getLocalMinPosition();
+        this.globalMaxPosition=swarmList.get(0).getLocalMaxPosition();
         //Инициализация глобального минимума
-        this.globalMinFunc = swarmList.get(0).getLocalMinFunc();
+        this.globalMaxFunc = swarmList.get(0).getLocalMaxFunc();
     }
 
     public void playSwarm(){
+
+        //Глобальный максимум
         for (Particle particle : swarmList) {
-            if (particle.getLocalMinFunc() < this.globalMinFunc) {
-                this.globalMinFunc = particle.getLocalMinFunc();
+            if (particle.getLocalMaxFunc() > this.globalMaxFunc) {
+                this.globalMaxFunc = particle.getLocalMaxFunc();
                 for (int j = 0; j < this.DIMENSION; j++){
-                    this.globalMinPosition.set(j, particle.getLocalMinPosition().get(j));
+                    this.globalMaxPosition.set(j, particle.getLocalMaxPosition().get(j));
                 }
-                System.out.println("new Global minimum = " + this.globalMinFunc);
+                System.out.println("-----Global maximum = " + this.globalMaxFunc);
+                for (int i = 0; i < DIMENSION; i++){
+                    System.out.print(" [x" + i + ": " + this.globalMaxPosition.get(i) + "]");
+                }
+                System.out.println();
             }
         }
 
 
-        //change vectors and move particle
+        //Движение частиц
         for (Particle particle : swarmList) {
 
-            particle.changeVector(this.globalMinPosition);
+
             particle.move();
-            particle.out();
+            particle.changeVector(this.globalMaxPosition);
         }
     }
 
     public ArrayList<Particle> getSwarmList(){
         return this.swarmList;
     }
-    public double getGlobalMinFunc(){
-        return this.globalMinFunc;
+    public double getGlobalMaxFunc(){
+        return this.globalMaxFunc;
     }
-    public Vector<Double> getGlobalMinPosition(){
-        return this.globalMinPosition;
+    public Vector<Double> getGlobalMaxPosition(){
+        return this.globalMaxPosition;
     }
 }
