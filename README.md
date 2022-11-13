@@ -12,18 +12,15 @@
 
 
 ##  О работе алгоритма
-Алгоритм ищет глобальный минимум целевой функции:
+Алгоритм ищет глобальный максимум целевой функции:
 
 
 
-![image](https://user-images.githubusercontent.com/91944488/201535611-e604883f-37cc-4642-b783-0a98b1aa135e.png)
+![image](https://user-images.githubusercontent.com/91944488/201547934-b7cf9af4-83ec-43bd-abd1-31b50a3f617c.png)
 
 
 
-
-Известно что глобальный минимум данной функции равен 0, поэтому оптимизация стремится к 0
-
-![image](https://user-images.githubusercontent.com/91944488/201535810-187e35ac-9a87-4cae-a31e-85375b8257ae.png)
+![image](https://user-images.githubusercontent.com/91944488/201547951-36c9607e-fe3a-49ca-99c1-0ddcc201e510.png)
 
 
 
