@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Swarm:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Swarm_jar</output-path>
+    <root id="archive" name="Swarm.jar">
+      <element id="module-output" name="Swarm" />
+    </root>
+  </artifact>
+</component>
