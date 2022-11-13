@@ -11,7 +11,7 @@
 
 
 
-The swarm algorithm finds the global minimum of a function:
+##  The swarm algorithm finds the global minimum of a function:
 
 
 
