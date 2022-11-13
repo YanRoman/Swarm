@@ -22,3 +22,6 @@
 
 
 It is known that the global minimum of this function is zero, so the result of the algorithm should tend to zero
+
+![image](https://user-images.githubusercontent.com/91944488/201535810-187e35ac-9a87-4cae-a31e-85375b8257ae.png)
+
