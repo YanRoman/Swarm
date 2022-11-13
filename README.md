@@ -1,4 +1,4 @@
-#  Java simulation for swarm algorithm.
+#  Роевой алгоритм
 
 
 
@@ -11,8 +11,8 @@
 
 
 
-##  The swarm algorithm finds the global minimum of a function:
-
+##  О работе алгоритма
+Алгоритм ищет глобальный минимум целевой функции:
 
 
 
@@ -21,11 +21,14 @@
 
 
 
-It is known that the global minimum of this function is zero, so the result of the algorithm should tend to zero
+Известно что глобальный минимум данной функции равен 0, поэтому оптимизация стремится к 0
 
 ![image](https://user-images.githubusercontent.com/91944488/201535810-187e35ac-9a87-4cae-a31e-85375b8257ae.png)
 
 
 
-###  This code is applicable for finding the global minimum and other functions
-P.S. This is my study project, will probably be updated
+###  Так-же этот код может оптимизировать и другие функции
+P.S. Это учебный прокет, вероятно будет обнавляться.
+
+### Если вы вдруг захотите запустить эту программу, в папке out находится исполняемый jar файл Swarm.jar
+Версия java: 19
