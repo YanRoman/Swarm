@@ -6,15 +6,15 @@ import java.util.Vector;
 class Swarm{
     //Мерность
     private final int DIMENSION;
+
     //global min position
     private Vector<Double> globalMaxPosition = new Vector<>();
+
     //global min func
     private double globalMaxFunc;
+
     //swarm
-    private ArrayList<Particle> swarmList = new ArrayList<>();
-
-
-
+    private final ArrayList<Particle> swarmList = new ArrayList<>();
 
     //Constructor
     public Swarm(int numberOfParticles, int numberOfCoordinates){
@@ -22,7 +22,7 @@ class Swarm{
         this.DIMENSION = numberOfCoordinates;
         //Создание частиц
         for (int i = 0; i < numberOfParticles; i++){
-            swarmList.add(new Particle(i, numberOfCoordinates));
+            swarmList.add(new Particle(numberOfCoordinates));
         }
         //Инициализация позиции Глобального минимума
         this.globalMaxPosition=swarmList.get(0).getLocalMaxPosition();
@@ -31,32 +31,24 @@ class Swarm{
     }
 
     public void playSwarm(){
-
         //Глобальный максимум
         for (Particle particle : swarmList) {
-            if (particle.getLocalMaxFunc() > this.globalMaxFunc) {
+            if (particle.getLocalMaxFunc() >= this.globalMaxFunc) {
                 this.globalMaxFunc = particle.getLocalMaxFunc();
                 for (int j = 0; j < this.DIMENSION; j++){
                     this.globalMaxPosition.set(j, particle.getLocalMaxPosition().get(j));
                 }
-                System.out.println("-----Global maximum = " + this.globalMaxFunc);
-                for (int i = 0; i < DIMENSION; i++){
-                    System.out.print(" [x" + i + ": " + this.globalMaxPosition.get(i) + "]");
-                }
-                System.out.println();
             }
         }
 
-
         //Движение частиц
         for (Particle particle : swarmList) {
-
-
             particle.move();
             particle.changeVector(this.globalMaxPosition);
         }
     }
 
+    //Геттеры
     public ArrayList<Particle> getSwarmList(){
         return this.swarmList;
     }
