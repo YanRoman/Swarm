@@ -200,6 +200,7 @@ public class Panel extends JPanel{
                 double tempPositionX = particle.getPosition().get(0) / 2;
                 double tempPositionY = particle.getPosition().get(1) / 2;
 
+
                 //вычисления положения x на графике
                 int posX = (int)tempPositionX + BUTTONS_PANEL_WIDTH + GRAPH_WIDTH/2;
                 //вычисления положения y на графике

@@ -31,6 +31,12 @@ class Particle{
 
         //LocalMinFunc
         this.localMaxFunc = this.func(this.position);
+
+
+        //System out
+        System.out.println("INIT POSITION" + " [x: " + position.get(0) + "] [Y: " + position.get(1) + "]");
+        System.out.println("INIT VECTOR" + " [x: " + vector.get(0) + "] [Y: " + vector.get(1) + "]");
+        System.out.println("INIT LOCAL MAXIMUM " + localMaxFunc);
     }
 
     //change vector
@@ -49,6 +55,9 @@ class Particle{
                     (c * r1 * this.position.get(i)) + (c * r2 * globalMaxPosition.get(i)) -
                     (c * r2 * this.position.get(i)));
         }
+
+        //System out
+        System.out.println("CHANGED VECTOR" + " [X: " + vector.get(0) + "] [Y: " + vector.get(1) + "]");
     }
 
     //move particle
@@ -63,6 +72,8 @@ class Particle{
                 this.localMaxPosition = this.position;
             }
         }
+        //System out
+        System.out.println("MOVE" + " [X: " + position.get(0) + "] [Y: " + position.get(1) + "]");
     }
 
     //func

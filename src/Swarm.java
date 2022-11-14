@@ -39,6 +39,12 @@ class Swarm{
                     this.globalMaxPosition.set(j, particle.getLocalMaxPosition().get(j));
                 }
             }
+
+            //System out
+            for (Particle particleOut : swarmList){
+                System.out.println("LOCAL MAXIMUM " + particleOut.getLocalMaxFunc());
+            }
+            System.out.println("NEW GLOBAL MAXIMUM " + globalMaxFunc);
         }
 
         //Движение частиц
